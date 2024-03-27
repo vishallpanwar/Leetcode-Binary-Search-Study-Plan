@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        
+        int start=0;
+        int end=nums.size()-1;
+
+        while(start<=end){
+
+            int mid=(start+end)/2;
+            
+            // Agr mid ele target ke equal hai to return mid
+            if(target==nums[mid])
+            return mid;
+            
+            // Agar mid ele target se bda hai to piche search kro
+            if(nums[mid]>target)
+            end=mid-1;
+            
+            // Agar mid ele target se bda hai to aage search kro
+            else
+            start=mid+1;
+        }
+        // Last me start return krdo
+        return start;
+    }
+};
