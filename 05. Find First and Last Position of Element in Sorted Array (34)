@@ -1,0 +1,72 @@
+// Binary search approach
+// FirstOcc ke liye ans store krke left me jate jyenge
+// lastOcc ke liye ans store krke right me jate jyenge
+
+class Solution {
+public:
+
+// First occ ke liye sbse left wla element chahiye
+int firstocc(vector<int> nums, int target){
+
+    int start=0;
+    int end=nums.size()-1;
+    int mid=(start+end)/2;
+    int ans=-1;
+
+    while(start<=end){
+        
+        // Mid ko ans me store krwake piche search kro khi usse bhi left me to nhi
+        if(nums[mid]==target){
+            ans=mid;
+            end=mid-1;
+        }
+
+        else if(nums[mid]>target){
+            end=mid-1;
+        }
+
+        else{
+            start=mid+1;
+        }
+        mid=(start+end)/2;
+    }
+    return ans;
+}
+
+// last occ ke liye sbse left wla element chahiye
+int lastocc(vector<int> nums, int target){
+
+    int start=0;
+    int end=nums.size()-1;
+    int mid=(start+end)/2;
+    int ans=-1;
+
+    while(start<=end){
+        
+        // Mid ko ans me store krwake aage search kro khi usse bhi right me to nhi
+        if(nums[mid]==target){
+            ans=mid;
+            start=mid+1;
+        }
+
+        else if(nums[mid]>target){
+            end=mid-1;
+        }
+
+        else{
+            start=mid+1;
+        }
+        mid=(start+end)/2;
+    }
+    return ans;
+}
+    vector<int> searchRange(vector<int>& nums, int target) {
+        
+        vector<int>ans;
+        
+        ans.push_back(firstocc(nums, target));
+        ans.push_back(lastocc(nums, target));
+
+        return ans;
+    }
+};
